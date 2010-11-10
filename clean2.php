@@ -70,12 +70,10 @@ function list_dir($dir_handle,$path,$keyword,$search_type)
     while (false !== ($file = readdir($dir_handle))) {
 		$delimeter = "\n";
         $dir =$path.'/'.$file;
-        if(is_dir($dir) && $file != '.' && $file !='..' )
-        {
+        if(is_dir($dir) && $file != '.' && $file !='..' ) {
             $handle = @opendir($dir) or die("undable to open file $file");
             list_dir($handle, $dir, $keyword,$search_type);
-        }elseif($file != '.' && $file !='..')
-        {
+        } elseif($file != '.' && $file !='..') {
 			if($search_type=='file'){
 				if(strcmp("$file", "$keyword")==0){
 			
@@ -83,12 +81,10 @@ function list_dir($dir_handle,$path,$keyword,$search_type)
 					echo "<input type=\"button\" value=\"Remove\" onClick=\"verify();\"></li>";
 					//unlink($webpath.$dir);
 					$search_result = 1;
-				}
-				else{
+				} else{
 					$search_result = 0;
 				}
-			}
-			else {	
+			} else {	
 			
 				$handle = @fopen($dir, "r"); 
 				
